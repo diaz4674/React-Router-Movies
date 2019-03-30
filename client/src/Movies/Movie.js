@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import MovieCard from './MovieCard';
-
+import MovieCard from './MovieCard'
 export default class Movie extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +25,6 @@ export default class Movie extends Component {
         console.error(error);
       });
   };
-
-  addTosavedList() ={
-    
-  }
   // Uncomment this code when you're ready for the stretch problems
   // componentWillReceiveProps(newProps){
   //   if(this.props.match.params.id !== newProps.match.params.id){
@@ -37,18 +32,20 @@ export default class Movie extends Component {
   //   }
   // }
 
-  // saveMovie = () => {
-  //   const addToSavedList = this.props.addToSavedList;
-  //   addToSavedList(this.state.movie)
-  // }
-
+saveMovie = () => {
+    const addToSavedList = this.props.addToSavedList;
+  addToSavedList(this.state.movie)
+  }
 
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
     }
     return (
-      <MovieCard movie = {this.state.movie} />
+      <div className="save-wrapper">
+          <MovieCard movie = {this.state.movie} />
+        <div className="save-button" onClick = {() => this.saveMovie()}>Save</div>
+      </div>
     );
   }
 }
